@@ -1,0 +1,35 @@
+[
+  {
+    "role": "Full-Stack Developer",
+    "company": "Enterprise Delivery Programs",
+    "dates": "2024 - Present",
+    "achievements": [
+      "Delivered production-grade full-stack modules with reliable handoff from UX intent to deployed feature.",
+      "Reduced integration friction by defining reusable API and UI contracts across frontend and backend teams.",
+      "Led implementation quality on high-visibility features under tight release windows."
+    ],
+    "techStack": ["React", "Java", "Spring Boot", "MySQL", "Docker"]
+  },
+  {
+    "role": "DevOps Workflow Engineer",
+    "company": "Automation Initiatives",
+    "dates": "2023 - 2024",
+    "achievements": [
+      "Implemented CI/CD paths that moved builds from manual checks to deterministic automated gates.",
+      "Standardized container workflows to improve release confidence and reduce environment drift.",
+      "Improved deployment turnaround by codifying release steps into repeatable pipeline stages."
+    ],
+    "techStack": ["GitHub Actions", "Jenkins", "Docker", "Linux"]
+  },
+  {
+    "role": "Frontend Systems Builder",
+    "company": "Product Engineering Projects",
+    "dates": "2022 - 2023",
+    "achievements": [
+      "Built interface architectures focused on readability, responsiveness, and conversion-critical user journeys.",
+      "Introduced component reuse patterns that cut duplicate implementation effort across features.",
+      "Translated rough concepts into polished, shippable product surfaces with clear hierarchy."
+    ],
+    "techStack": ["React", "JavaScript", "CSS", "Vite"]
+  }
+]

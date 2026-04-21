@@ -1,0 +1,50 @@
+[
+  {
+    "name": "React Interface Engineering",
+    "category": "Frontend",
+    "proficiency": "Expert",
+    "description": "Designing resilient component systems that ship quickly without turning into maintenance debt."
+  },
+  {
+    "name": "TypeScript Architecture",
+    "category": "Language",
+    "proficiency": "Advanced",
+    "description": "Defining expressive contracts that keep product velocity high while reducing runtime surprises."
+  },
+  {
+    "name": "GSAP Storytelling Motion",
+    "category": "Animation",
+    "proficiency": "Advanced",
+    "description": "Building scroll-driven narratives where animation explains hierarchy, timing, and intent."
+  },
+  {
+    "name": "Framer Motion Micro-UX",
+    "category": "Interaction",
+    "proficiency": "Advanced",
+    "description": "Crafting tactile hover, cursor, and transition details that make interactions feel alive and intentional."
+  },
+  {
+    "name": "Tailwind Design Systems",
+    "category": "Styling",
+    "proficiency": "Advanced",
+    "description": "Composing scalable utility patterns with strict visual rhythm and fast iteration loops."
+  },
+  {
+    "name": "Spring Boot APIs",
+    "category": "Backend",
+    "proficiency": "Strong",
+    "description": "Building stable backend services that power data-rich products with predictable behavior."
+  },
+  {
+    "name": "CI/CD Delivery Pipelines",
+    "category": "DevOps",
+    "proficiency": "Strong",
+    "description": "Automating release workflows so teams can deploy confidently under tight product deadlines."
+  },
+  {
+    "name": "Dockerized Environments",
+    "category": "Infrastructure",
+    "proficiency": "Strong",
+    "description": "Containerizing applications for parity across local, staging, and production environments."
+  }
+]
