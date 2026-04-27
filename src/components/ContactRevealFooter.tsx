@@ -1,11 +1,21 @@
-import { FormEvent, useLayoutEffect, useRef } from 'react'
+import { FormEvent, useLayoutEffect, useRef, useState } from 'react'
 import { ensureGsap } from '@/lib/gsap'
 import MagneticButton from '@/components/MagneticButton'
 
 const CONTACT_EMAIL = 'rcharanteja2006@gmail.com'
+const GOOGLE_FORM_ACTION =
+  'https://docs.google.com/forms/d/e/1FAIpQLSeuYvoqo02ZUEe32Yc19tbwS6oQDSpNbwQ5ZG19PDV6eY-E0g/formResponse'
+const GOOGLE_FORM_FIELDS = {
+  name: 'entry.1725024348',
+  email: 'entry.1155754001',
+  message: 'entry.1192551353',
+} as const
+
+type SubmitState = 'idle' | 'submitting' | 'success' | 'error'
 
 export default function ContactRevealFooter() {
   const footerRef = useRef<HTMLElement>(null)
+  const [submitState, setSubmitState] = useState<SubmitState>('idle')
 
   useLayoutEffect(() => {
     const footer = footerRef.current
@@ -43,21 +53,39 @@ export default function ContactRevealFooter() {
     }
   }, [])
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const formData = new FormData(event.currentTarget)
-    const name = formData.get('name') || ''
-    const email = formData.get('email') || ''
-    const message = formData.get('message') || ''
+    const form = event.currentTarget
+    const formData = new FormData(form)
+    const googleFormData = new FormData()
 
-    const subject = `${String(name)} · Portfolio Inquiry`
-    const body = `Sender: ${String(name)} (${String(email)})\n\n${String(
-      message,
-    )}`
+    googleFormData.append(
+      GOOGLE_FORM_FIELDS.name,
+      String(formData.get('name') || ''),
+    )
+    googleFormData.append(
+      GOOGLE_FORM_FIELDS.email,
+      String(formData.get('email') || ''),
+    )
+    googleFormData.append(
+      GOOGLE_FORM_FIELDS.message,
+      String(formData.get('message') || ''),
+    )
 
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`
+    setSubmitState('submitting')
+
+    try {
+      await fetch(GOOGLE_FORM_ACTION, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: googleFormData,
+      })
+
+      form.reset()
+      setSubmitState('success')
+    } catch {
+      setSubmitState('error')
+    }
   }
 
   return (
@@ -121,7 +149,27 @@ export default function ContactRevealFooter() {
             />
           </label>
 
-          <MagneticButton type="submit">Launch Conversation</MagneticButton>
+          <div className="flex flex-col items-start gap-3">
+            <MagneticButton
+              type="submit"
+              disabled={submitState === 'submitting'}
+              className="disabled:cursor-wait disabled:opacity-70"
+            >
+              {submitState === 'submitting'
+                ? 'Sending...'
+                : 'Launch Conversation'}
+            </MagneticButton>
+
+            <p
+              aria-live="polite"
+              className="min-h-5 text-sm text-chalk/65"
+            >
+              {submitState === 'success' &&
+                'Message sent. I will get back to you soon.'}
+              {submitState === 'error' &&
+                'Something went wrong. Please try again or email me directly.'}
+            </p>
+          </div>
         </form>
       </div>
     </footer>
