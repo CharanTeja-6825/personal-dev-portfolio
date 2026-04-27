@@ -6,6 +6,7 @@ import ContactRevealFooter from '@/components/ContactRevealFooter'
 import CustomCursor from '@/components/CustomCursor'
 import HeroSection from '@/components/HeroSection'
 import HorizontalTimeline from '@/components/HorizontalTimeline'
+import ProfileCurvedLoop from '@/components/ProfileCurvedLoop'
 import type { ResumeItem, SkillItem } from '@/lib/data'
 import { loadPortfolioData } from '@/lib/data'
 import { ensureGsap } from '@/lib/gsap'
@@ -73,6 +74,10 @@ export default function Page() {
       <CustomCursor />
       <main className="bg-obsidian text-chalk">
         <HeroSection />
+        <ProfileCurvedLoop
+          skills={portfolioState.skills}
+          resume={portfolioState.resume}
+        />
         <BentoGrid skills={portfolioState.skills} />
         <HorizontalTimeline
           entries={portfolioState.resume}
