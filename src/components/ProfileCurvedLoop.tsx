@@ -33,13 +33,13 @@ export default function ProfileCurvedLoop({
   return (
     <section
       aria-label="Profile highlights"
-      className="relative overflow-hidden border-b border-chalk/10 px-0 py-10 text-neon md:py-14"
+      className="relative overflow-hidden border-b border-chalk/10 px-0 py-4 text-neon md:py-8"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neon/40 to-transparent" />
       <CurvedLoop
         marqueeText={`${highlights.join(' ✦ ')} ✦`}
         speed={1.4}
-        curveAmount={260}
+        curveAmount={160}
         direction="right"
         interactive
         className="font-display tracking-[0.08em]"
