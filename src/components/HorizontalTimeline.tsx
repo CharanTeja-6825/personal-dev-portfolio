@@ -32,28 +32,67 @@ export default function HorizontalTimeline({
     const { gsap, ScrollTrigger } = ensureGsap()
 
     const ctx = gsap.context(() => {
-      const distance = Math.max(track.scrollWidth - section.clientWidth, 0)
-      if (distance < 1) {
-        return
-      }
+      const cards = gsap.utils.toArray<HTMLElement>('article', track)
+      const getDistance = () =>
+        Math.max(track.scrollWidth - section.clientWidth, 0)
+      const mm = gsap.matchMedia()
 
-      gsap.to(track, {
-        x: -distance,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: () => `+=${distance + window.innerHeight * 0.75}`,
-          scrub: 1,
-          pin: true,
-          anticipatePin: 1,
-        },
+      mm.add('(min-width: 1024px)', () => {
+        gsap.set(track, { x: 0 })
+
+        const horizontalScroll = gsap.to(track, {
+          x: () => -getDistance(),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: () => `+=${getDistance() + window.innerHeight * 0.75}`,
+            scrub: 0.8,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        })
+
+        return () => {
+          horizontalScroll.kill()
+          gsap.set(track, { clearProps: 'transform' })
+        }
       })
+
+      mm.add('(max-width: 1023px)', () => {
+        gsap.set(track, { clearProps: 'transform' })
+
+        gsap.fromTo(
+          cards,
+          { opacity: 0, y: 36 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.68,
+            stagger: 0.08,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 74%',
+              once: true,
+            },
+          },
+        )
+      })
+
+      const refreshFrame = window.requestAnimationFrame(() => {
+        ScrollTrigger.refresh()
+      })
+
+      return () => {
+        window.cancelAnimationFrame(refreshFrame)
+        mm.revert()
+      }
     }, section)
 
     return () => {
       ctx.revert()
-      ScrollTrigger.refresh()
     }
   }, [entries])
 
@@ -83,11 +122,14 @@ export default function HorizontalTimeline({
           </MagneticButton>
         </div>
 
-        <div ref={trackRef} className="flex gap-6 pb-4">
+        <div
+          ref={trackRef}
+          className="flex snap-x snap-mandatory gap-6 overflow-x-auto overscroll-x-contain scroll-smooth pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:snap-none lg:overflow-visible"
+        >
           {entries.map((entry) => (
             <article
               key={`${entry.company}-${entry.role}`}
-              className="min-h-[440px] w-[92vw] shrink-0 rounded-3xl border border-chalk/10 bg-white/[0.03] p-8 md:w-[42rem]"
+              className="min-h-[440px] w-[calc(100vw-3rem)] shrink-0 snap-start rounded-3xl border border-chalk/10 bg-white/[0.03] p-8 md:w-[42rem]"
             >
               <div className="flex flex-col gap-2 border-b border-chalk/10 pb-6">
                 <p className="text-xs uppercase tracking-[0.32em] text-electric">

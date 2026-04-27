@@ -9,10 +9,10 @@ interface BentoGridProps {
 
 function getSpanClasses(index: number) {
   const pattern = [
-    'md:col-span-2 md:row-span-2',
-    'md:col-span-1 md:row-span-1',
-    'md:col-span-1 md:row-span-1',
-    'md:col-span-2 md:row-span-1',
+    'lg:col-span-2 lg:row-span-2',
+    'lg:col-span-1 lg:row-span-1',
+    'lg:col-span-1 lg:row-span-1',
+    'lg:col-span-2 lg:row-span-1',
   ]
 
   return pattern[index % pattern.length]
@@ -42,46 +42,41 @@ export default function BentoGrid({ skills }: BentoGridProps) {
     }
 
     const ctx = gsap.context(() => {
-      const reveal = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: '+=140%',
-          scrub: 1.05,
-          pin: true,
-          anticipatePin: 1,
-        },
-      })
-
-      reveal.fromTo(
-        cards,
-        { opacity: 0, y: 100, rotateX: 36, z: -150 },
-        {
-          opacity: 1,
-          y: 0,
-          rotateX: 0,
-          z: 0,
-          stagger: 0.16,
-          ease: 'power2.out',
-        },
-      )
-
       cards.forEach((card, index) => {
-        reveal.to(
+        gsap.fromTo(
           card,
           {
-            y: index % 2 === 0 ? -16 : 16,
-            rotateZ: index % 3 === 0 ? 0.8 : -0.8,
-            ease: 'none',
+            opacity: 0,
+            y: 56,
+            rotateX: 16,
+            rotateZ: index % 2 === 0 ? 0.8 : -0.8,
           },
-          0,
+          {
+            opacity: 1,
+            y: 0,
+            rotateX: 0,
+            rotateZ: 0,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 88%',
+              end: 'top 58%',
+              scrub: 0.55,
+              invalidateOnRefresh: true,
+            },
+          },
         )
       })
+
+      const refreshFrame = window.requestAnimationFrame(() => {
+        ScrollTrigger.refresh()
+      })
+
+      return () => window.cancelAnimationFrame(refreshFrame)
     }, section)
 
     return () => {
       ctx.revert()
-      ScrollTrigger.refresh()
     }
   }, [skills])
 
@@ -99,7 +94,7 @@ export default function BentoGrid({ skills }: BentoGridProps) {
           Tools I use when quality and ship speed both matter.
         </h2>
 
-        <div className="mt-16 grid auto-rows-[180px] grid-cols-1 gap-4 md:grid-cols-4 md:auto-rows-[200px]">
+        <div className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[260px]">
           {skills.map((skill, index) => (
             <motion.article
               key={skill.name}
@@ -109,7 +104,7 @@ export default function BentoGrid({ skills }: BentoGridProps) {
               whileHover={{ scale: 1.05 }}
               transition={{ type: 'spring', stiffness: 220, damping: 18 }}
               data-cursor="interactive"
-              className={`group relative overflow-hidden rounded-2xl border border-chalk/15 bg-white/[0.03] p-6 backdrop-blur-sm ${getSpanClasses(
+              className={`group relative min-h-[250px] overflow-hidden rounded-2xl border border-chalk/15 bg-white/[0.03] p-5 backdrop-blur-sm sm:min-h-[270px] sm:p-6 lg:min-h-0 ${getSpanClasses(
                 index,
               )}`}
             >
@@ -122,12 +117,12 @@ export default function BentoGrid({ skills }: BentoGridProps) {
                 }}
                 transition={{ duration: 0.35 }}
               />
-              <div className="relative z-10 flex h-full flex-col justify-between">
+              <div className="relative z-10 flex h-full flex-col justify-between gap-8">
                 <div>
                   <span className="text-[0.63rem] uppercase tracking-[0.3em] text-neon">
                     {skill.category}
                   </span>
-                  <h3 className="mt-3 font-display text-2xl font-semibold text-chalk">
+                  <h3 className="mt-3 font-display text-xl font-semibold text-chalk sm:text-2xl">
                     {skill.name}
                   </h3>
                 </div>
