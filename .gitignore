@@ -31,3 +31,10 @@ dist-ssr
 .agents/.capture-lock
 .agents/.capture-dirty
 .agents/knowledge/pending/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
