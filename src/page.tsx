@@ -7,13 +7,15 @@ import CustomCursor from '@/components/CustomCursor'
 import HeroSection from '@/components/HeroSection'
 import HorizontalTimeline from '@/components/HorizontalTimeline'
 import ProfileCurvedLoop from '@/components/ProfileCurvedLoop'
-import type { ResumeItem, SkillItem } from '@/lib/data'
+import ProjectsShowcase from '@/components/ProjectsShowcase'
+import type { ProjectItem, ResumeItem, SkillItem } from '@/lib/data'
 import { loadPortfolioData } from '@/lib/data'
 import { ensureGsap } from '@/lib/gsap'
 
 interface PortfolioState {
   skills: SkillItem[]
   resume: ResumeItem[]
+  projects: ProjectItem[]
 }
 
 export default function Page() {
@@ -21,6 +23,7 @@ export default function Page() {
   const [portfolioState, setPortfolioState] = useState<PortfolioState>({
     skills: [],
     resume: [],
+    projects: [],
   })
 
   useEffect(() => {
@@ -79,6 +82,7 @@ export default function Page() {
           resume={portfolioState.resume}
         />
         <BentoGrid skills={portfolioState.skills} />
+        <ProjectsShowcase projects={portfolioState.projects} />
         <HorizontalTimeline
           entries={portfolioState.resume}
           resumeHref="/resume18mar2026.pdf"

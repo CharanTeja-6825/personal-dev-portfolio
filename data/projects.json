@@ -1,0 +1,75 @@
+[
+  {
+    "name": "DRIVEAWAY",
+    "tagline": "Production-grade car rental marketplace",
+    "description": "Full-stack marketplace with customer, dealer, and admin roles, secure Razorpay payments, automated booking lifecycle jobs, Redis caching, MongoDB data modeling, Dockerized services, and CI/CD deployment.",
+    "repositoryUrl": "https://github.com/CharanTeja-6825/DRIVEAWAY",
+    "readmeUrl": "https://github.com/CharanTeja-6825/DRIVEAWAY/blob/main/README.md",
+    "liveUrl": "https://driveaway-jhee.onrender.com/",
+    "techStack": ["React 19", "Spring Boot", "MongoDB", "Redis", "Razorpay", "Docker"],
+    "highlights": [
+      "Three-role RBAC for customers, dealers, and admins",
+      "Server-side payment order creation and signature verification",
+      "Automated booking expiry, activation, and completion schedules"
+    ],
+    "preview": {
+      "eyebrow": "Live marketplace",
+      "title": "Cars, bookings, payments, and dashboards in one deployed flow",
+      "metrics": ["3 roles", "7 collections", "CI/CD"]
+    }
+  },
+  {
+    "name": "SentinelFace",
+    "tagline": "Real-time face recognition system",
+    "description": "Modular real-time face recognition application with a responsive PySide6 GUI, ONNX Runtime inference, SCRFD detection, ArcFace embeddings, FairFace age and gender classification, tracking, and defensive health monitoring.",
+    "repositoryUrl": "https://github.com/MrGhol/SentinelFace",
+    "readmeUrl": "https://github.com/MrGhol/SentinelFace/blob/master/README.md",
+    "techStack": ["Python", "PySide6", "ONNX Runtime", "SCRFD", "ArcFace", "FairFace"],
+    "highlights": [
+      "ML workloads run off the UI thread for real-time responsiveness",
+      "GPU inference with automatic CPU fallback",
+      "Tracking, re-identification, telemetry, and camera resilience"
+    ],
+    "preview": {
+      "eyebrow": "Vision workstation",
+      "title": "Detection, embeddings, demographics, and health signals",
+      "metrics": ["GPU ready", "QThread", "ONNX"]
+    }
+  },
+  {
+    "name": "Panoptic Segmentation",
+    "tagline": "Real-time intelligent scene understanding",
+    "description": "Multimodal AI vision platform combining YOLOv8 segmentation, object tracking, scene memory, Ollama-backed reasoning, live camera streams, analytics, heatmaps, and a React TypeScript dashboard.",
+    "repositoryUrl": "https://github.com/CharanTeja-6825/panoptic-segmentation",
+    "readmeUrl": "https://github.com/CharanTeja-6825/panoptic-segmentation/blob/main/README.md",
+    "techStack": ["FastAPI", "React", "TypeScript", "YOLOv8", "Ollama", "OpenCV"],
+    "highlights": [
+      "Live MJPEG camera segmentation with WebSocket event updates",
+      "Scene-memory-first query routing with LLM fallback",
+      "Analytics, object counts, spatial heatmaps, and video Q&A"
+    ],
+    "preview": {
+      "eyebrow": "AI vision console",
+      "title": "Live feed, scene memory, chat, and analytics dashboard",
+      "metrics": ["WebSocket", "YOLOv8", "LLM"]
+    }
+  },
+  {
+    "name": "Awetales Project",
+    "tagline": "Target speaker identification and multispeaker ASR",
+    "description": "Modular neural audio pipeline for target speaker extraction, diarization, ASR, denoising, speech restoration, overlap detection, real-time WebSocket streaming, and structured JSON transcription output.",
+    "repositoryUrl": "https://github.com/CharanTeja-6825/Awetales-Project",
+    "readmeUrl": "https://github.com/CharanTeja-6825/Awetales-Project/blob/main/README.md",
+    "techStack": ["Python", "Whisper", "PyAnnote", "MossFormer2", "WebSocket", "CUDA"],
+    "highlights": [
+      "Target speaker extraction using reference audio",
+      "Multiple ASR backends with diarized timestamps and confidence scores",
+      "Offline batch mode plus low-latency streaming mode"
+    ],
+    "preview": {
+      "eyebrow": "Audio intelligence",
+      "title": "Denoise, separate, identify, transcribe, and stream",
+      "metrics": ["<500ms", "JSON", "ASR"]
+    }
+  }
+]
