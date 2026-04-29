@@ -5,7 +5,7 @@
     "description": "Full-stack marketplace with customer, dealer, and admin roles, secure Razorpay payments, automated booking lifecycle jobs, Redis caching, MongoDB data modeling, Dockerized services, and CI/CD deployment.",
     "repositoryUrl": "https://github.com/CharanTeja-6825/DRIVEAWAY",
     "readmeUrl": "https://github.com/CharanTeja-6825/DRIVEAWAY/blob/main/README.md",
-    "liveUrl": "https://driveaway-jhee.onrender.com/",
+    "liveUrl": "https://driveaway.charantejadev.com/",
     "techStack": ["React 19", "Spring Boot", "MongoDB", "Redis", "Razorpay", "Docker"],
     "highlights": [
       "Three-role RBAC for customers, dealers, and admins",

@@ -40,7 +40,8 @@
 }
 
 .magic-bento-card__header,
-.magic-bento-card__content {
+.magic-bento-card__content,
+.magic-bento-visual {
   position: relative;
   display: flex;
   color: var(--magic-bento-white);
@@ -55,6 +56,235 @@
 .magic-bento-card__content {
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.magic-bento-visual {
+  flex: 1 1 auto;
+  min-height: 5.5rem;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.magic-bento-visual svg {
+  width: min(78%, 13rem);
+  height: auto;
+  overflow: visible;
+}
+
+.magic-bento-react-atom {
+  width: min(72%, 10.5rem);
+  filter: drop-shadow(0 0 18px rgba(204, 255, 0, 0.12));
+  transform-origin: center;
+  will-change: transform;
+}
+
+.magic-bento-react-atom svg {
+  width: 100%;
+}
+
+.magic-bento-react-atom__ring {
+  fill: none;
+  stroke: rgba(204, 255, 0, 0.38);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.magic-bento-react-atom__core {
+  fill: rgba(204, 255, 0, 0.52);
+  filter: drop-shadow(0 0 8px rgba(204, 255, 0, 0.36));
+}
+
+.magic-bento-ts__rail,
+.magic-bento-ts__slot,
+.magic-bento-ts__block {
+  vector-effect: non-scaling-stroke;
+}
+
+.magic-bento-ts__rail {
+  fill: rgba(245, 245, 245, 0.025);
+  stroke: rgba(245, 245, 245, 0.12);
+  stroke-width: 1;
+}
+
+.magic-bento-ts__slot {
+  fill: rgba(245, 245, 245, 0.035);
+  stroke: rgba(245, 245, 245, 0.11);
+  stroke-width: 1;
+}
+
+.magic-bento-ts__slot--locked {
+  animation: magic-bento-locked-pulse 2.8s ease-in-out infinite;
+  fill: rgba(204, 255, 0, 0.2);
+  stroke: rgba(204, 255, 0, 0.35);
+}
+
+.magic-bento-ts__block {
+  fill: rgba(245, 245, 245, 0.12);
+  stroke: rgba(245, 245, 245, 0.22);
+  stroke-width: 1;
+}
+
+.magic-bento-ts__check {
+  fill: none;
+  stroke: rgba(204, 255, 0, 0.72);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.magic-bento-visual--framer {
+  pointer-events: auto;
+  overflow: hidden;
+  border-radius: 0.8rem;
+  isolation: isolate;
+}
+
+.magic-bento-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(13px);
+  opacity: 0.58;
+  will-change: transform;
+}
+
+.magic-bento-orb--one {
+  left: 22%;
+  top: 26%;
+  background: radial-gradient(circle, rgba(204, 255, 0, 0.72), rgba(204, 255, 0, 0));
+}
+
+.magic-bento-orb--two {
+  right: 24%;
+  top: 18%;
+  background: radial-gradient(circle, rgba(255, 0, 85, 0.5), rgba(255, 0, 85, 0));
+}
+
+.magic-bento-orb--three {
+  left: 44%;
+  bottom: 18%;
+  background: radial-gradient(circle, rgba(245, 245, 245, 0.34), rgba(245, 245, 245, 0));
+}
+
+.magic-bento-orb--four {
+  right: 18%;
+  bottom: 24%;
+  background: radial-gradient(circle, rgba(204, 255, 0, 0.4), rgba(204, 255, 0, 0));
+}
+
+.magic-bento-gsap__wave {
+  fill: none;
+  stroke: rgba(204, 255, 0, 0.42);
+  stroke-dasharray: 54 118;
+  stroke-linecap: round;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  animation: magic-bento-wave 5.8s linear infinite;
+}
+
+.magic-bento-gsap__wave--two {
+  animation-delay: -1.4s;
+  opacity: 0.7;
+}
+
+.magic-bento-gsap__wave--three {
+  animation-delay: -2.7s;
+  opacity: 0.46;
+}
+
+.magic-bento-skeleton {
+  display: flex;
+  gap: 0.5rem;
+  width: min(78%, 12rem);
+  height: min(70%, 5.9rem);
+  padding: 0.5rem;
+  border: 1px solid rgba(245, 245, 245, 0.08);
+  border-radius: 0.65rem;
+  background: rgba(245, 245, 245, 0.025);
+}
+
+.magic-bento-spring__line,
+.magic-bento-spring__server,
+.magic-bento-spring__node {
+  fill: none;
+  stroke: rgba(245, 245, 245, 0.16);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.magic-bento-spring__line {
+  stroke-dasharray: 4 6;
+}
+
+.magic-bento-spring__server {
+  fill: rgba(245, 245, 245, 0.035);
+  stroke: rgba(204, 255, 0, 0.24);
+}
+
+.magic-bento-spring__node {
+  fill: rgba(204, 255, 0, 0.08);
+}
+
+.magic-bento-spring__dot {
+  fill: rgba(204, 255, 0, 0.7);
+  animation: magic-bento-data-ping 2.6s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(204, 255, 0, 0.42));
+}
+
+.magic-bento-spring__dot--two {
+  animation-delay: -0.9s;
+  animation-duration: 3.1s;
+}
+
+.magic-bento-spring__dot--three {
+  animation-delay: -1.7s;
+  animation-duration: 2.3s;
+}
+
+@keyframes magic-bento-locked-pulse {
+  0%,
+  100% {
+    fill-opacity: 0.16;
+    stroke-opacity: 0.28;
+  }
+
+  50% {
+    fill-opacity: 0.28;
+    stroke-opacity: 0.55;
+  }
+}
+
+@keyframes magic-bento-wave {
+  to {
+    stroke-dashoffset: -172;
+  }
+}
+
+@keyframes magic-bento-data-ping {
+  0%,
+  100% {
+    opacity: 0.28;
+    transform: scale(0.82);
+  }
+
+  48% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .magic-bento-react-atom,
+  .magic-bento-ts__slot--locked,
+  .magic-bento-gsap__wave,
+  .magic-bento-spring__dot {
+    animation: none;
+  }
+
+  .magic-bento-orb {
+    will-change: auto;
+  }
 }
 
 .magic-bento-card__label {
