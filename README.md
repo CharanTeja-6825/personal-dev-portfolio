@@ -1,131 +1,48 @@
-# Personal Portfolio
+# personal-dev-portfolio
 
-A motion-driven developer portfolio built with React, Vite, Tailwind CSS, GSAP, Framer Motion, and Lenis. The experience is designed around a dark editorial interface, lime-green accent energy, scroll-based storytelling, and polished micro-interactions.
+Rathikindi Charan Teja's portfolio, built as a small shell. It boots having already run `whoami` and then waits at an empty prompt. Visitors type commands (`help` lists them) or click any name in the output to run it.
 
-## Tech Stack
-
-### Core
-
-- React 19
-- TypeScript 6
-- Vite 8
-- Node.js package workflow with npm
-
-### Styling
-
-- Tailwind CSS 3
-- PostCSS and Autoprefixer
-- Custom CSS modules for complex visual systems
-- `clsx` and `tailwind-merge` for class composition
-
-### Motion and Interaction
-
-- GSAP 3 with ScrollTrigger for scroll-based animation sections
-- Framer Motion 12 for cursor, magnetic, spring, and hover micro-interactions
-- Lenis for smooth scrolling
-- Custom cursor and magnetic button interactions
-- Lightweight SVG and CSS keyframe animation for bento card visuals
-
-### Data and Content
-
-- Dynamic JSON imports from `data/skills.json`, `data/projects.json`, and `data/resume.json`
-- Resume PDF served from `public/resume18mar2026.pdf`
-- Portfolio sections receive data through typed props instead of hardcoded component content
-
-### Build and Deployment
-
-- Vite production build
-- Cloudflare Vite plugin
-- Wrangler for preview and deployment
-- ESLint 9 with React Hooks and React Refresh rules
-
-## Visual Theme
-
-The portfolio uses a high-contrast dark mode theme with restrained neon accents.
-
-### Color Tokens
-
-| Token | Value | Usage |
-| --- | --- | --- |
-| `obsidian` | `#0a0a0a` | Main page background |
-| `chalk` | `#f5f5f5` | Primary text and light UI details |
-| `neon` | `#ccff00` | Lime-green accent, labels, glows, hover fills |
-| `electric` | `#ff0055` | Secondary hot-pink accent and ambient glow |
-
-### Typography
-
-- Display: `Inter Tight`
-- Body: `Space Grotesk`
-- The interface favors tight headings, uppercase micro-labels, and readable body copy over heavy decorative type.
-
-### Atmosphere
-
-- Dark obsidian base with subtle radial background glows
-- Lime-green accent used for section labels, animated visual states, and hover feedback
-- Electric pink reserved for contrast and ambient energy
-- Rounded but controlled UI surfaces, with bento cards using the existing dark card background and soft borders
-
-## Interface Sections
-
-- `HeroSection` introduces the portfolio with GSAP entrance and pointer-reactive motion.
-- `ProfileCurvedLoop` creates a looping profile and skills rhythm.
-- `BentoGrid` presents the skill arsenal through the Magic Bento card system.
-- `ProjectsShowcase` displays project work with scroll-aware reveals.
-- `HorizontalTimeline` maps professional experience into a responsive animated timeline.
-- `ContactRevealFooter` closes the page with a motion-led contact section.
-
-## Bento Card Visual System
-
-The skill cards use lightweight SVG, CSS, and Framer Motion details while preserving the original grid layout, typography, spacing, and dark/lime theme.
-
-- React Interface Engineering: translucent rotating React atom with hover-speed motion.
-- TypeScript Architecture: geometric strict-typing lock forms with lime pulse states.
-- GSAP Storytelling Motion: thin cascading SVG wave paths with animated dash offsets.
-- Framer Motion Micro-UX: blurred gradient orbs that spring around pointer movement.
-- Tailwind Design Systems: miniature UI skeleton with group-hover cascading fills.
-- Spring Boot APIs: server-node diagram with dashed links and pinging data dots.
-
-All animation layers respect reduced-motion preferences and avoid heavy WebGL, canvas, and external animation payloads.
-
-## Project Structure
-
-```text
-src/
-  components/        Reusable portfolio sections and interactive UI systems
-  lib/               Data loading, utilities, and GSAP setup
-  styles/            Global Tailwind and theme styles
-  page.tsx           Root portfolio composition and Lenis/ScrollTrigger sync
-data/                Portfolio content in JSON and markdown
-public/              Static assets served directly
 ```
+guest@charan:~$ help
+help            list commands
+whoami          who this is
+projects        what I built; --live for deployed ones
+ls [dir]        list projects/ or infra/
+open <name>     details and links
+skills          tools I use, backed by the repos above
+experience      how I work
+contact         email, github, linkedin
+resume          download the pdf
+clear           clear the screen
+```
+
+Tab completes, the arrow keys walk history, and Ctrl+L clears.
+
+## Layout
+
+| Path | What it is |
+|---|---|
+| `src/content.ts` | All content: profile, skills, experience, projects. Every claim is sourced from the resume or the linked repo. |
+| `src/commands.ts` | Pure command table. `run(input)` returns plain data; `complete(input)` handles Tab. |
+| `src/Shell.tsx` | Renders the output log and prompt: history, Tab, Ctrl+L, click-to-run. |
+| `src/styles.css` | Design tokens and styles for locked direction H. |
+| `src/commands.check.ts` | Assert-based self-check for commands and completion. |
+| `public/fonts/` | Self-hosted Monaspace Xenon 300/400/800 (SIL OFL 1.1, see `OFL.txt`). |
+| `public/resume.pdf` | The resume served by `resume`. |
+| `public/portrait.webp` | Portrait shown by `whoami`. Regenerate with `python3 scripts/portrait.py <photo>` (needs Pillow). |
+| `design/` | Locked direction H, its capsule (`ROUND-2-CONTEXT.md`) and `STYLEGUIDE.html`. |
+
+To add a project, append it to `projects` in `src/content.ts`. Use `group: 'core'` for the main grid or `'infra'` for `ls infra`. Public repos only.
 
 ## Scripts
 
 ```bash
-npm run dev
-npm run build
-npm run lint
-npm run preview
-npm run deploy
+npm run dev        # vite dev server
+npm run check      # command self-check (node, no deps)
+npm run typecheck  # tsc, strict
+npm run lint       # eslint over .ts/.tsx
+npm run preview    # build + wrangler dev on :8787
+npm run deploy     # build + wrangler deploy (Cloudflare Workers static assets)
 ```
 
-## Local Development
-
-Install dependencies, start Vite, and open the local server.
-
-```bash
-npm install
-npm run dev
-```
-
-Production assets are generated with:
-
-```bash
-npm run build
-```
-
-Code quality is checked with:
-
-```bash
-npm run lint
-```
+Stack: React 19, TypeScript, Vite 8, Cloudflare Workers. No animation or CSS framework.

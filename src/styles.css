@@ -1,0 +1,58 @@
+/* Locked direction H (design/ROUND-2-CONTEXT.md). Change values only by reopening the direction. */
+@font-face { font-family: "Xenon"; src: url("/fonts/monaspace-xenon-300.woff2") format("woff2"); font-weight: 300; font-display: swap; }
+@font-face { font-family: "Xenon"; src: url("/fonts/monaspace-xenon-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Xenon"; src: url("/fonts/monaspace-xenon-800.woff2") format("woff2"); font-weight: 800; font-display: swap; }
+
+:root {
+  --canvas: #243a8c;  /* ink blue ground */
+  --ink: #f4f3ec;     /* primary: names */
+  --desc: #aab8f5;    /* secondary: descriptions */
+  --stack: #7fdcc0;   /* tertiary: stacks */
+  --accent: #ffc857;  /* prompt, commands, errors */
+  --gutter: clamp(16px, 4vw, 56px);
+  color-scheme: dark;
+}
+
+html { background: var(--canvas); }
+body { margin: 0; font: 400 15px/1.55 "Xenon", ui-monospace, monospace; color: var(--ink); font-variant-ligatures: none; }
+::selection { background: var(--accent); color: var(--canvas); }
+p { margin: 0; }
+
+.shell { padding: clamp(24px, 4vw, 56px) var(--gutter) 80px; }
+.entry + .entry { margin-top: clamp(40px, 7vw, 96px); }
+.cmd, .prompt label { color: var(--accent); font-size: 14px; line-height: 1.5; }
+
+.lines { margin-top: 0.6em; max-width: 72ch; }
+/* Full-colour portrait (scripts/portrait.py). Flat rectangle: no radius, frame or shadow. */
+.portrait { display: block; width: clamp(112px, 11vw, 176px); height: auto; margin-top: 0.8em; }
+/* neofetch layout: picture left, identity right, so projects stay above the fold. Stacks on phones. */
+.entry:has(> .portrait) { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 3ch; align-items: end; }
+.entry:has(> .portrait) > .cmd { grid-column: 1 / -1; }
+@media (max-width: 30rem) { .entry:has(> .portrait) { display: block; } }
+.lines p { white-space: pre-wrap; overflow-wrap: anywhere; }
+.lines + .lines { margin-top: 1.2em; }
+.name { font-weight: 800; }
+.desc { color: var(--desc); }
+.stack { color: var(--stack); }
+.err { color: var(--accent); }
+
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(16px, 3vw, 48px); row-gap: clamp(32px, 5vw, 72px); margin-top: 1.2em; }
+.grid:has(> .cell:only-child) { grid-template-columns: minmax(0, 72ch); }
+.cell p { font-size: 14px; line-height: 1.5; }
+.cell .head { font-weight: 800; font-size: clamp(22px, 3.1vw, 46px); line-height: 1.02; letter-spacing: -0.035em; overflow-wrap: break-word; margin-bottom: 0.45em; }
+@media (max-width: 52rem) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 30rem) { .grid { grid-template-columns: 1fr; } }
+
+/* Runnable tokens read as text; underline appears on hover/focus. Links always underline (they leave the page). */
+.run { font: inherit; letter-spacing: inherit; color: var(--ink); background: none; border: 0; padding: 0; margin: 0; cursor: pointer; text-align: left; }
+.run:hover, a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+.run:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.prompt { display: flex; gap: 1ch; align-items: baseline; margin-top: clamp(40px, 7vw, 96px); }
+.prompt input { flex: 1; min-width: 0; font: 400 16px/1.5 "Xenon", ui-monospace, monospace; color: var(--ink); caret-color: var(--accent); background: none; border: 0; padding: 0; outline: none; }
+.prompt input::placeholder { color: var(--desc); opacity: 1; }
+/* Focus cue is typographic: the prompt turns primary and heavy while the field has focus. */
+.prompt:focus-within label { color: var(--ink); font-weight: 800; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

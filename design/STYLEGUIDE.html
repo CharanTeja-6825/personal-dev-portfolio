@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Style guide H</title>
+<style>
+@font-face { font-family: "Xenon"; src: url("../public/fonts/monaspace-xenon-300.woff2") format("woff2"); font-weight: 300; }
+@font-face { font-family: "Xenon"; src: url("../public/fonts/monaspace-xenon-400.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Xenon"; src: url("../public/fonts/monaspace-xenon-800.woff2") format("woff2"); font-weight: 800; }
+:root { --canvas: #243a8c; --ink: #f4f3ec; --desc: #aab8f5; --stack: #7fdcc0; --accent: #ffc857; }
+html { background: var(--canvas); }
+body { margin: 0; font: 400 15px/1.55 "Xenon", ui-monospace, monospace; color: var(--desc); }
+main { padding: clamp(24px, 4vw, 56px) clamp(16px, 4vw, 56px) 96px; }
+p, pre { margin: 0; }
+section { margin-top: clamp(40px, 7vw, 96px); max-width: 78ch; }
+.c { color: var(--accent); font-size: 14px; }
+h1, h2 { color: var(--ink); font-weight: 800; letter-spacing: -0.035em; line-height: 1.02; margin: 0.4em 0 0.5em; }
+h1 { font-size: clamp(30px, 5vw, 64px); }
+h2 { font-size: clamp(22px, 3.1vw, 46px); }
+b { color: var(--ink); font-weight: 800; }
+.s { color: var(--stack); }
+.a { color: var(--accent); }
+.i { color: var(--ink); }
+p + p { margin-top: 0.5em; }
+.kv p { white-space: pre-wrap; }
+pre { white-space: pre-wrap; color: var(--ink); font: inherit; margin-top: 0.6em; }
+</style>
+</head>
+<body>
+<main>
+<p class="c">guest@charan:~$ man portfolio</p>
+<h1>Direction H</h1>
+<p>Plain <b>ls</b> prints names across in columns. Project names become a large sorted grid, with small details under each. The projects outrank the person.</p>
+<p>Locked 2026-09-30 by explicit instruction. Status: implemented in <b>src/</b>. Freezing awaits your approval of the built site.</p>
+
+<section>
+<p class="c">guest@charan:~$ cat evidence</p>
+<h2>source boundary</h2>
+<p>Allowed: the resume PDF, the GitHub profile README, repo READMEs and code, and terminal behaviour (the prompt, <b>ls</b> column output and sort order, scrollback).</p>
+<p>Prohibited: portfolio galleries, other designers, UI kits, and Google Fonts. Content rule: public repos only, and every line must trace to a source. No invented metrics or proficiency levels.</p>
+</section>
+
+<section>
+<p class="c">guest@charan:~$ fc-list | grep Xenon</p>
+<h2>typography</h2>
+<div class="kv">
+<p><b>family</b>    Monaspace Xenon, slab-serif monospace, GitHub Next</p>
+<p><b>license</b>   SIL OFL 1.1, self-hosted in public/fonts/ with OFL.txt. Free for web, redistribution allowed; the name "Monaspace" is reserved if modified.</p>
+<p><b>files</b>     latin subset, weights 300 / 400 / 800, woff2 (~48 KB each). 400 and 800 are preloaded.</p>
+<p><b>fallback</b>  ui-monospace, monospace</p>
+<p><b>coverage</b>  Basic Latin only. Add the latin-ext subset before any non-English copy.</p>
+</div>
+<pre>
+role            size                       weight  tracking
+project name    clamp(22px, 3.1vw, 46px)    800     -0.035em, line-height 1.02
+body / lede     15px / 1.55                 400
+cell detail     14px / 1.5                  400
+command echo    14px / 1.5                  400
+input           16px (no iOS zoom)          400
+</pre>
+<p>Case follows the source exactly: repo names keep their own case (DRIVEAWAY, sentinel_face_v2), and descriptions and stacks are lowercase. Ligatures are off. Display names may break only after "-" or "_", never mid-word.</p>
+</section>
+
+<section>
+<p class="c">guest@charan:~$ env | grep COLOR</p>
+<h2>color</h2>
+<div class="kv">
+<p><b>--canvas</b>  #243a8c  ground, flat, one per page</p>
+<p class="i">--ink     #f4f3ec  primary: names, runnable tokens, links    9.17:1</p>
+<p>--desc    #aab8f5  secondary: descriptions, lede, placeholder   5.29:1</p>
+<p class="s">--stack   #7fdcc0  tertiary: tech stacks, hints                6.27:1</p>
+<p class="a">--accent  #ffc857  prompt, command echo, errors                6.63:1</p>
+</div>
+<p>All pairs pass WCAG AA for body text. Colour is never the only cue: errors are spelled out ("command not found: x"), links are underlined, and runnable names underline on hover or focus.</p>
+</section>
+
+<section>
+<p class="c">guest@charan:~$ ls -C layout</p>
+<h2>space</h2>
+<div class="kv">
+<p><b>page</b>      padding clamp(24px, 4vw, 56px) top, clamp(16px, 4vw, 56px) sides, 80px bottom. Left-aligned, never centered.</p>
+<p><b>entries</b>   clamp(40px, 7vw, 96px) between commands. Output starts 0.6em under its echo.</p>
+<p><b>grid</b>      3 columns, 2 below 52rem, 1 below 30rem. Gutter clamp(16px, 3vw, 48px), row gap clamp(32px, 5vw, 72px). A single cell (open) widens to 72ch.</p>
+<p><b>text</b>      line blocks max 72ch. Aligned output (help, contact) is padded with spaces in a monospace grid, never with table markup.</p>
+</div>
+</section>
+
+<section>
+<p class="c">guest@charan:~$ imgcat portrait.webp</p>
+<h2>imagery</h2>
+<div class="kv">
+<p><b>approved</b>  one portrait, added on 2026-09-30 at your request. No other photos, illustrations or icons.</p>
+<p><b>treatment</b> the photo in its real colours, with no colour grading, tint or filter. It's the only full-colour element on the page. Built by scripts/portrait.py; the source photo is never shipped and EXIF is dropped.</p>
+<p><b>crop</b>      head and shoulders; the bystander at the right edge of the source is removed. 480x674 webp (~33 KB) shown at clamp(112px, 11vw, 176px).</p>
+<p><b>shape</b>     a flat rectangle with no radius, frame, shadow, filter or hover effect.</p>
+<p><b>placement</b> only in whoami, printed like imgcat output before the text. From 30rem up, a neofetch layout: picture left, name and lede bottom-aligned on the right, with a 3ch gap. Stacked on phones.</p>
+<p><b>rule</b>      the portrait stays small, so the display-size project names remain the largest thing on screen whenever projects are listed.</p>
+<p><b>rejected</b>  a text (jp2a-style) portrait, which lost the likeness; and a canvas-to-ink duotone, which you overrode on 2026-09-30 in favour of the actual image.</p>
+</div>
+</section>
+
+<section>
+<p class="c">guest@charan:~$ help interaction</p>
+<h2>behaviour</h2>
+<div class="kv">
+<p><b>boot</b>      only whoami is already run at load. Its last line, "run help to see commands", has help as a runnable token so touch visitors have something to tap. Then an empty prompt with the "type help" placeholder. Instant, no typing animation.</p>
+<p><b>run</b>       every project or command name in output is a &lt;button&gt; that runs its command.</p>
+<p><b>keys</b>      Enter runs. Tab completes only when there is something to complete, otherwise it moves focus (no keyboard trap). Up/Down walk history. Ctrl+L clears.</p>
+<p><b>focus</b>     the prompt turns --ink and 800 weight while the input has focus. Buttons and links get a 2px --accent outline on focus-visible.</p>
+<p><b>touch</b>     no auto-focus on coarse pointers, so the phone keyboard never opens uninvited.</p>
+<p><b>motion</b>    none. No transitions, parallax, cursor effects or smooth scroll.</p>
+</div>
+</section>
+
+<section>
+<p class="c">guest@charan:~$ cat invariants</p>
+<h2>rules</h2>
+<p><b>locked</b>: the ink-blue canvas, slab mono, the four text roles, display-size project names, the sorted ls grid, and left alignment.</p>
+<p><b>may vary</b>: the number of grid cells, new commands (as long as they render as lines or a grid), and new content in src/content.ts.</p>
+<p><b>prohibited</b>: cards, borders or panels around cells, gradients, shadows, icons, extra photos, a light theme, a second typeface, animation, proficiency bars, and SVG of any kind.</p>
+<p><b>reopen only for</b>: an accessibility failure, new evidence, or an explicit instruction from you.</p>
+<p><b>open issues</b>: DRIVEAWAY's live link returned 503 at build time (you'll restore it). There is no favicon (SVG is excluded, and a PNG mark hasn't been designed). Crawlers without JavaScript see only the noscript line.</p>
+</section>
+
+<section>
+<p class="c">guest@charan:~$ cat prompts</p>
+<h2>continue</h2>
+<p><b>add a project</b></p>
+<pre>Read design/ROUND-2-CONTEXT.md and design/STYLEGUIDE.html. The direction is locked. Add [public repo] to src/content.ts as group [core|infra], with about lines sourced from its README. Run npm run check.</pre>
+<p><b>add a command</b></p>
+<pre>Read design/STYLEGUIDE.html. Add a `[name]` command to src/commands.ts that returns lines or a grid using only the existing tones. Add one assert to src/commands.check.ts. Do not add styles.</pre>
+<p><b>new artifact</b></p>
+<pre>Read design/ROUND-2-CONTEXT.md and design/STYLEGUIDE.html. The visual direction is locked. Create [artifact] for [format] using the exact copy below. Preserve the invariants. Do not generate alternative directions. [copy]</pre>
+<p><b>revise without reopening</b></p>
+<pre>Revise [file] to fix [problem]. Keep direction H locked and preserve [qualities]. State exactly what changed.</pre>
+</section>
+</main>
+</body>
+</html>

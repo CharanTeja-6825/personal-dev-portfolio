@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>H</title>
+<style>
+@font-face { font-family: "Xe"; src: url("https://cdn.jsdelivr.net/npm/@fontsource/monaspace-xenon@5.3.0/files/monaspace-xenon-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Xe"; src: url("https://cdn.jsdelivr.net/npm/@fontsource/monaspace-xenon@5.3.0/files/monaspace-xenon-latin-800-normal.woff2") format("woff2"); font-weight: 800; }
+html { background: #243a8c; }
+body { margin: 0; font-family: "Xe", ui-monospace, monospace; color: #f4f3ec; }
+main { padding: clamp(24px, 4vw, 56px) clamp(16px, 4vw, 56px) 80px; }
+p { margin: 0; }
+.c { color: #ffc857; font-size: 14px; line-height: 1.5; }
+.who { max-width: 58ch; margin: 0.6em 0 clamp(40px, 7vw, 96px); font-size: 15px; line-height: 1.55; color: #aab8f5; }
+.who b { display: block; color: #f4f3ec; font-weight: 800; font-size: 15px; }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(16px, 3vw, 48px); row-gap: clamp(32px, 5vw, 72px); margin: 1.2em 0 clamp(48px, 7vw, 96px); }
+.cell b { display: block; font-weight: 800; font-size: clamp(22px, 3.1vw, 46px); line-height: 1.02; letter-spacing: -0.035em; overflow-wrap: anywhere; margin-bottom: 0.45em; }
+.cell span { display: block; font-size: 14px; line-height: 1.5; }
+.d { color: #aab8f5; }
+.s { color: #7fdcc0; }
+@media (max-width: 52rem) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 30rem) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main>
+  <p class="c">guest@charan:~$ whoami</p>
+  <p class="who"><b>Rathikindi Charan Teja</b>Computer Science undergraduate focused on backend development, distributed systems and scalable applications.</p>
+
+  <p class="c">guest@charan:~$ ls projects</p>
+  <div class="grid">
+    <div class="cell"><b>Awetales-Project</b><span class="d">target-speaker asr and diarization pipeline</span><span class="s">python pytorch whisper</span></div>
+    <div class="cell"><b>DRIVEAWAY</b><span class="d">car rental marketplace</span><span class="s">spring-boot react mongodb redis docker</span></div>
+    <div class="cell"><b>SIH2025</b><span class="d">fair internship allocation engine</span><span class="s">python pytorch flask</span></div>
+    <div class="cell"><b>infra/</b><span class="d">six deployment repos</span><span class="s">docker kubernetes helm ansible jenkins aws</span></div>
+    <div class="cell"><b>panoptic-segmentation</b><span class="d">real-time scene understanding</span><span class="s">yolov8 fastapi ollama react</span></div>
+    <div class="cell"><b>sentinel_face_v2</b><span class="d">classroom attendance from video</span><span class="s">fastapi pgvector redis docker-compose</span></div>
+  </div>
+
+  <p class="c">guest@charan:~$ type help for commands</p>
+</main>
+</body>
+</html>
